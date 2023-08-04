@@ -1,0 +1,20 @@
+<%= form_with(model: [@user, @user.memberships.build]) do |form| %>
+<%#= form_for(@memberships) do |form| %>
+ <%= form.label :class_name %>
+  <%= form.select :class_name, ["yoga", "Weight lifting", "Aerobics"] %>
+
+  <%= form.label :start_date %>
+  <%= form.date_field :start_date %>
+
+  <%= form.label :end_date %>
+  <%= form.date_field :end_date %>
+
+  <%= form.label :status %>
+ <%= form.select :status, ["Active", "Deactivate"] %>
+
+     <!-- <a href="/users/<%= current_user.id %>/payments/new" >
+    <%= "Proceed Payments" %>
+  </a>  -->
+
+  <%= form.submit  %>
+<% end %>

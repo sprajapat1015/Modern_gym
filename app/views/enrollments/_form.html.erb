@@ -1,0 +1,24 @@
+<%= form_with model: [current_user, current_user.enrollments.build] do |form| %>
+
+ 
+
+  <%= form.label :enrollment_date %>
+  <%= form.date_field :enrollment_date %>
+
+
+  <%#= form.label :course_id %>
+  <%#= form.text_field :course_id %> 
+    <div class="field">
+    <%= form.label :cours_id %>
+    <%= form.select :course_id, options_for_select(Course.all.map { |c| [c.class_name, c.id] }), include_blank: true %>
+  </div>
+ 
+   <%= form.hidden_field :user_id, value: current_user.id%> 
+
+  <%# = form.hidden_field :cours_id, value:@trainer_coach.courses.limit(1).id %>
+
+  <%= form.submit  %>
+
+<% end %>
+
+

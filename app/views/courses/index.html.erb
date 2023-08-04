@@ -1,0 +1,88 @@
+<div class="container-flouid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <h3>Modern Gym</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Courses</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Event</a>
+          </li>
+
+        </ul>
+        <form class="">
+
+      
+         <a class="btn btn-outline-primary mr-2" >   
+             <%= button_to '', destroy_user_session_path, method: :delete %>   
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+         </a>
+
+
+         <a class="btn btn-outline-primary mr-2" href="/trainer_coaches">Get Trainers Details</a>
+        </form>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+
+<div class="card" style="width: 95.5rem; margin-top: 7px;
+  margin-bottom: 3px;
+  margin-right: 31px;
+  margin-left: -5px;
+">
+  <div class="card-body">
+    <h3>All Courses Details</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Courses ID </th>
+          <th>Class Name</th>
+          <th>Description</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Capacity</th>
+          <th>Enroll</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% @courses.each do |course| %>
+        <tr>
+        <td><%= course.id %></td>
+        <td><%= course.class_name %></td>
+        <td><%= course.description %></td>
+        <td><%= course.start_time %></td>
+        <td><%= course.end_time %></td>
+        <td><%= course.capacity %></td>
+        <td><a href="/users/<%= current_user.id %>/enrollments/new">
+          <%= "Enroll" %>
+          </a></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+</div>
+
+<a href="/trainer_coaches" class="btn btn-primary">Back</a>
+

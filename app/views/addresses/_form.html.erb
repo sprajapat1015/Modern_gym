@@ -1,0 +1,30 @@
+<%= form_with model: @addresses  do |form| %>
+  <p>
+    <%= form.label :house_no %><br>
+    <%= form.text_field :house_no %>
+
+  </p>
+  <p>
+    <%= form.label :street%><br>
+    <%= form.text_field :street %>
+  </p>
+   <p>
+    <%= form.label :city%><br>
+    <%= form.text_field :city %>
+  </p>
+  
+ <p>
+    <%= form.label :state%><br>
+    <%= form.text_field :state %>
+  </p>
+   <p>
+    <%= form.label :postal_code%><br>
+    <%= form.text_field :postal_code %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+  
+
+<% end %>

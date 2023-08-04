@@ -1,0 +1,20 @@
+<%= form_with model: [current_user, current_user.payments.build] do |form| %>
+   <%#= form.label :membership_id %>
+<%#= form.collection_select(:membership_id, current_user.memberships, :id, :name) %>
+
+
+
+  <%= form.hidden_field :membership_id, value: current_user.memberships.first.id%>
+
+
+
+  <%= form.label :payment_date %>
+  <%= form.date_field :payment_date %>
+
+  <%= form.label :amount %>
+  <%= form.text_field :amount %>
+
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+  <%= form.submit %>
+<% end %>

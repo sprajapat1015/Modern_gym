@@ -1,0 +1,173 @@
+<div class="container-flouid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <h3>Modern Gym</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Member</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Courses</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Event</a>
+          </li>
+
+        </ul>
+        <form class="">
+
+         
+
+
+
+          <a class="btn btn-outline-primary mr-2" href=" /users/sign_in">Login</a>
+         <a class="btn btn-outline-primary mr-2" href="/trainer_coaches">Get Trainers Details</a>
+        </form>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+
+<div class="card" style="width: 40rem; 
+margin-top: 53px;
+  margin-bottom: 113px;
+  margin-right: 11px;
+  margin-left: 416px;
+  padding-top: 10px;
+  padding-right: 30px;
+  padding-bottom: 50px;
+  padding-left: 129px;
+">
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+  <div class="field">
+    <%= f.label :"First Name :" %>
+    <%= f.text_field :first_name, autofocus: true %><br><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Last Name :" %>
+    <%= f.text_field :last_name, autofocus: true%><br><br>
+  </div>
+  <div class="field">
+    <%= f.label :"date of Birth :" %>
+    <%= f.date_field :date_of_birth%><br><br>
+  </div>
+   <div class="field">
+    <%= f.label :"Mobile Number : " %>
+    <%= f.text_field :phone_number%><br><br>
+  </div>
+   <div class="field">
+    <%= f.label :gender, "Gender : " %>
+   <%= f.radio_button :gender, "Male" %>
+  <%= f.label :male, "Male" %>
+  <%= f.radio_button :gender, "Female" %>
+  <%= f.label :female, "Female" %>
+  </div><br>
+
+<%= f.fields_for :address_attributes , resource.address do |addresses_form| %>
+<%#= f.fields_for :addresses do |addresses_form| %>
+  <div class="field">
+    <%= addresses_form.label :"House No. :                     " %>
+    <%= addresses_form.text_field :house_no, autofocus: true%><br><br>
+  </div>
+
+    <div class="field">
+    <%= addresses_form.label :"Street : " %>
+    <%= addresses_form.text_field :street, autofocus: true%><br><br>
+  </div>
+
+    <div class="field">
+    <%= addresses_form.label :"City : "%>
+    <%= addresses_form.text_field :city, autofocus: true%><br><br>
+  </div>
+
+  <div class="field">
+    <%= addresses_form.label :"State : " %>
+    <%= addresses_form.text_field :state, autofocus: true%><br><br>
+  </div>
+
+   <div class="field">
+    <%= addresses_form.label :"Pincode : " %>
+    <%= addresses_form.text_field :postal_code, autofocus: true%><br><br>
+  </div>
+
+<%end%>
+
+
+
+  <div class="field">
+    <%= f.label :"Email : " %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Password : " %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password" %><br><br>
+  </div>
+
+  <div class="field">
+    <%= f.label :"Password Confirmation : " %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %><br><br>
+  </div>
+
+
+
+  <div class="actions btn btn-outline-primary mr-2">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%#= render "devise/shared/links" %>
+
+
+</div>
+
+<style>
+
+
+/* Default styles */
+.card {
+  width: 100%;
+  max-width: 40rem;
+  margin: 53px auto 113px;
+  padding: 10px 30px 50px 129px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+/* Media query for screens smaller than 768px (e.g., smartphones) */
+@media (max-width: 767px) {
+  .card {
+    padding: 10px 20px;
+    margin: 20px auto;
+  }
+  
+  /* Adjust other styles as needed for smaller screens */
+}
+
+
+  </style>

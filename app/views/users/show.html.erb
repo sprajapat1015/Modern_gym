@@ -1,0 +1,173 @@
+<div class="container-flouid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <h3>Modern Gym</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/users/<%= current_user.id %>/enrollments/new">Enroll Class</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Courses</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Event</a>
+          </li>
+
+        </ul>
+        <form class="">
+
+      
+         <a class="btn btn-outline-primary mr-2" >   
+             <%= button_to '', destroy_user_session_path, method: :delete %>   
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+         </a>
+
+
+         <a class="btn btn-outline-primary mr-2" href="/trainer_coaches">Get Trainers Details</a>
+          <a class="btn btn-outline-success" href="#">Become member</a>
+        </form>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+<div class="card" style="width: 40rem; margin-left: 19px;">
+  <%# <img src="img1.png" class="card-img-top" alt="..."> %>
+  <div class="card-body">
+    <h3>Profile</h3>
+    <h5 class="card-title">Username:  <%= @user.email%> </h5>
+    <p class="card-text">Name :  <%= @user.first_name%> <%= @user.last_name%></p>
+    <p class="card-text">Gender  :  <%= @user.gender%> </p>
+    <p class="card-text">Date of Birth : <%= @user.date_of_birth%> </p>
+    <p class="card-text">Mobile N0. : <%= @user.phone_number%> </p>
+    <p class="card-text"> Address : <%= @user.address.house_no%>, <%= @user.address.street%>, <%= @user.address.city%>, <%= @user.address.state%>, <%= @user.address.postal_code%></p>
+
+    <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+  </div>
+</div>
+
+
+
+   <%= link_to "Update", edit_user_path(@user) ,class: "nav_bar"  %> 
+   <br>
+
+
+
+<div class="card" style="width: 30rem; margin-top: -300px;
+  margin-bottom: 113px;
+  margin-right: 11131px;
+  margin-left: 739px;
+  ">
+  
+  <%# <img src="img1.png" class="card-img-top" alt="..."> %>
+  <div class="card-body">
+    <%#byebug%>
+    <h3>Membership Details</h3>
+    <%# if current_user.has_role? :coach%>
+      <% if (current_user.memberships.any?)   %>
+        <% @user.memberships.each do |membership| %>
+        <h5 class="card-title"> Membership ID : <%= membership.id %> </h5>
+        <h5 class="card-title"> Class Name : <%= membership.class_name %> </h5>
+        <p class="card-text"> Start Date : <%= membership.start_date %></p>
+        <p class="card-text"> End Date : <%= membership.end_date %>  </p>
+        <p class="card-text">Status : <%= membership.status %> </p>
+        <p class="card-text"> Class Name : <%= membership.class_name %> </p>
+        <%end%>
+        <% else %>
+          <p>Memberships Not Found</p>
+          <a href="/users/<%= current_user.id %>/memberships/new">
+          <%= "Get Memebership" %>
+          </a>
+      <%end%>
+    <%#end%>
+  </div>
+</div>
+
+ <%# <%= trainer_coach.first.expertise %> 
+
+
+<div class="card" style="width: 30rem; 
+margin-top: 17px;
+  margin-bottom: 113px;
+  margin-right: 11px;
+  margin-left: 739px;
+">
+  <div class="card-body">
+    <h3>Payment Details</h3>
+    <% if  ( @user.payments.any? && @user.memberships.any? ) %>
+      <% @user.payments.each do |payment| %>
+      <h5 class="card-title">Payment ID : <%= payment.id %> </h5>
+      <p class="card-text">Payment date : <%= payment.payment_date %><br>  </p>
+      <p class="card-text">Amount : <%= payment.amount %><br> </p>
+
+      <%end%>
+      <% else %>
+       <p>No payments found.</p>
+        <!--  <a href="/users/<%= current_user.id %>/payments/new">
+        <%= "Get Payments" %>
+        </a>  -->
+    <%end%>
+  </div>
+</div>
+   
+  <div class="card" style="width: 40rem; 
+    margin-top: -290px;
+      margin-bottom: 113px;
+      margin-right: 11px;
+      margin-left: 69px;">
+
+
+  <div class="card-body" >
+    <h3>Courses Details</h3>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black; /* Add border to the table */
+  }
+
+  th, td {
+    border: 1px solid black; /* Add border to table cells */
+    padding: 8px;
+    text-align: left;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class Name</th>
+      <th>Start Time</th>
+      <th>End Time</th>
+      <th>Course ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.courses.each do |course| %>
+      <tr>
+        <td><%= course.class_name %></td>
+        <td><%= course.start_time %></td>
+        <td><%= course.end_time %></td>
+        <td><%= course.trainer_coach_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  </div>
+</div>
+

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Details</title>
+  <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' %>
+  <!-- Add any other custom stylesheets if needed -->
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="card-title">Edit Details</h1>
+
+        <%= form_with model: @trainer_coach do |form| %>
+          <%= form.label :first_name %>
+          <%= form.text_field :first_name, class: "form-control" %>
+
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name, class: "form-control" %>
+
+          <%= form.label :phone_number %>
+          <%= form.text_field :phone_number, class: "form-control" %>
+
+          <%= form.label :expertise %>
+          <%= form.select :expertise, ["yoga", "Weight_lifting", "Aerobics"], {}, class: "form-control" %>
+
+          <%= form.submit class: "btn btn-primary mt-3" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

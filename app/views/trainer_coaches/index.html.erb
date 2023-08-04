@@ -1,0 +1,73 @@
+<div class="container-flouid">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <h3>Your Logo</h3>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Member</a>
+          </li>
+       
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Event</a>
+          </li>
+
+        </ul>
+        <form class="">
+
+          <%= button_to "Sign", destroy_user_session_path, method: :delete %>   
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+         <a class="btn btn-outline-primary mr-2" href="/users">Account</a>
+          <a class="btn btn-outline-primary mr-2" href="/users/sign_out">Logout</a>
+          <a class="btn btn-outline-success" href="#">Become member</a>
+        </form>
+
+      </div>
+    </div>
+  </nav>
+</div>
+
+
+
+
+
+
+
+<div class="card" style="width: 95.5rem; margin-top: 7px;
+  margin-bottom: 3px;
+  margin-right: 31px;
+  margin-left: -5px;
+">
+  <div class="card-body">
+    <h3>All Trainer Details</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Trainer Name</th>
+          <th>Expertise</th>
+          <th>Show Trainer Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @trainer_coaches.each do |trainer| %>
+        <tr>
+          <td><%= trainer.first_name %></td>
+          <td><%= trainer.expertise %></td>
+          <td><a href="/trainer_coaches/<%= trainer.id %>" class="btn btn-primary btn-sm">Show Trainer Details</a></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+</div>
