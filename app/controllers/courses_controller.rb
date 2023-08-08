@@ -1,30 +1,31 @@
 class CoursesController < ApplicationController
+
   def index
-    byebug
-    @courses = Course.all
+    # byebug
+    trainer_coach = TrainerCoach.find(params[:trainer_coach_id])
+    @courses = trainer_coach.courses.all
+    # @courses = Courses.all
+
   end
   
-  def show
-    # @trainer_coach = TrainerCoach.find(params[:course_id])
-    @course = Course.find(params[:id ])
-  end
+  # def show
+  #   # @trainer_coach = TrainerCoach.find(params[:course_id])
+  #   @course = Course.find(params[:id ])
+  # end
 
   def new
-    # byebug
     @trainer_coach = TrainerCoach.find(params[:trainer_coach_id])
     @course = @trainer_coach.courses.new
-
-    # @course = Course.new
   end
 
   def create
+    
     @trainer_coach= TrainerCoach.find(params[:trainer_coach_id])
     @course = @trainer_coach.courses.new(course_params)
-    # byebug
-     if @course.save
-       redirect_to @trainer_coach
-     else 
-       render :new, status: :unprocessable_entity
+    if @course.save
+      redirect_to @trainer_coach
+    else 
+      render :new, status: :unprocessable_entity
      end
   end
 

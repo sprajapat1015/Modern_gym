@@ -12,7 +12,7 @@ class MembershipsController < ApplicationController
     @membership = @user.memberships.new(membership_params.merge(user_id: params[:user_id]))
      if @membership.save
       # redirect_to root_path, notice: 'Membership was successfully created.'
-      redirect_to new_user_payment_path, notice: 'Membership was successfully created.'
+      redirect_to new_user_payment_path
      else
       redirect_to @user, notice: 'Membership not created'
      end

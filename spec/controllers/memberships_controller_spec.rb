@@ -5,7 +5,7 @@ RSpec.describe MembershipsController, type: :controller do
 
   describe "GET #index" do
     context "test" do
-      byebug
+      # byebug
       it "displays all Memberships" do
         get :index
       end
@@ -13,3 +13,4 @@ RSpec.describe MembershipsController, type: :controller do
   end
 
 end
+

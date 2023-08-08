@@ -10,7 +10,16 @@ class User < ApplicationRecord
   has_many :enrollments, dependent: :destroy 
   has_many :courses, through: :enrollments, source: :course, dependent: :destroy 
 
-   validates :first_name, presence: true 
+  validates :first_name, presence: true 
+  validates :last_name, presence: true 
+  validates :date_of_birth, presence: true 
+  validates :email, presence: true 
+  validates :phone_number, presence: true 
+  validates :gender, presence: true 
+
+
+
+
 
 
 
@@ -22,7 +31,7 @@ class User < ApplicationRecord
   after_create :assign_default_role
 
   def assign_default_role
-    self.add_role(:coach) if self.roles.blank?
+    self.add_role(:member) if self.roles.blank?
   end
 
 end

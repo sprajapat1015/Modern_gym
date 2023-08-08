@@ -4,14 +4,10 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   # get 'home/index'
-  # devise_for :trainers, controllers: 
-  # {    registrations: "trainers/registrations",
-  #      sessions: "trainers/sessions"       }
   
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
-  
   
   resources :users do
     resources :addresses

@@ -5,10 +5,9 @@ class Membership < ApplicationRecord
 
 
   validates :class_name, presence: true
-  validates :description, presence: true
-  validates :start_time, presence: true
-  validates :end_time, presence: true
-  validates :capacity, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
+  validates :status, presence: true
   
 
   

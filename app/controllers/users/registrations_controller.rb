@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   def create
     super
+    @user.add_role(:member) 
     UserJobsJob.perform_now(@user)
   end
 
