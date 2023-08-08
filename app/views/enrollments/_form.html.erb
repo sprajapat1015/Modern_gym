@@ -1,24 +1,45 @@
-<%= form_with model: [current_user, current_user.enrollments.build] do |form| %>
-
- 
-
-  <%= form.label :enrollment_date %>
-  <%= form.date_field :enrollment_date %>
 
 
-  <%#= form.label :course_id %>
-  <%#= form.text_field :course_id %> 
-    <div class="field">
-    <%= form.label :cours_id %>
-    <%= form.select :course_id, options_for_select(Course.all.map { |c| [c.class_name, c.id] }), include_blank: true %>
-  </div>
- 
-   <%= form.hidden_field :user_id, value: current_user.id%> 
+<% if (current_user.memberships.any?)  %>
 
-  <%# = form.hidden_field :cours_id, value:@trainer_coach.courses.limit(1).id %>
 
-  <%= form.submit  %>
 
+  <%= form_with model: [current_user, current_user.enrollments.build] do |form| %>
+
+
+  
+
+    <%= form.label :enrollment_date %>
+    <%= form.date_field :enrollment_date %>
+
+
+    <%#= form.label :course_id %>
+    <%#= form.text_field :course_id %> 
+
+      <%# <div class="field">  %>
+      <%#= form.label :cours_id %>
+      <%#= form.select :course_id, options_for_select(Course.all.map { |c| [c.class_name, c.id] }), include_blank: true %>
+    <%# </div> %>
+
+      <div class="field">
+      <%= form.label :"Select Class With Your Preferable time" %>
+      <%= form.select :course_id, options_for_select(Course.all.map { |c| ["#{c.start_time.in_time_zone('Asia/Kolkata').strftime("%H:%M %Z")} - #{c.class_name}", c.id] }), include_blank: true %>
+
+    </div>
+  
+    <%= form.hidden_field :user_id, value: @user.id%> 
+
+    <%# = form.hidden_field :cours_id, value:@trainer_coach.courses.limit(1).id %>
+
+    <%= form.submit  %>
+
+  <% end %>
+  <% else %>
+
+  <h1>  Please get Membership First then you have eligible for Getting Enrollment </h1>
+  
 <% end %>
+
+
 
 

@@ -43,7 +43,7 @@
 
 
 
-<div class="card" style="width: 40rem; 
+<!--  <div class="card" style="width: 40rem; 
 margin-top: 53px;
   margin-bottom: 113px;
   margin-right: 11px;
@@ -119,6 +119,10 @@ margin-top: 53px;
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %><br><br>
   </div>
 
+
+
+  
+
   <div class="field">
     <%= f.label :"Password : " %>
     <% if @minimum_password_length %>
@@ -142,9 +146,9 @@ margin-top: 53px;
 <%#= render "devise/shared/links" %>
 
 
-</div>
+</div> -->
 
-<style>
+<%# <style>
 
 
 /* Default styles */
@@ -170,4 +174,136 @@ margin-top: 53px;
 }
 
 
-  </style>
+  </style> %>
+
+
+
+
+  <div class="card">
+  <div class="card-header">
+    User Registration
+  </div>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :"First Name :" %>
+        <%= f.text_field :first_name, class: "form-control", autofocus: true %>
+      </div>
+
+      <!-- Add other form fields here -->
+       <div class="field">
+          <%= f.label :"Last Name :" %>
+          <%= f.text_field :last_name, class: "form-control", autofocus: true%><br>
+        </div>
+        <div class="field">
+          <%= f.label :"date of Birth :" %>
+          <%#= f.date_field :, value: resource.date_of_birth.strftime("%Y-%m-%d"), class: "form-control", autofocus: true %>
+          <%= f.date_field :date_of_birth, class: "form-control", autofocus: true%><br>
+
+        </div>
+
+        <div class="field">
+          <%= f.label :"Mobile Number : " %>
+          <%= f.text_field :phone_number, class: "form-control", autofocus: true%><br>
+        </div>
+        <div class="field">
+          <%= f.label :gender, "Gender : " %>
+        <%= f.radio_button :gender, "Male" %>
+        <%= f.label :male, "Male" %>
+        <%= f.radio_button :gender, "Female" %>
+        <%= f.label :female, "Female" %>
+        </div><br>
+
+      <%= f.fields_for :address_attributes , resource.address do |addresses_form| %>
+      <%#= f.fields_for :addresses do |addresses_form| %>
+        <div class="field">
+          <%= addresses_form.label :"House No. :                     " %>
+          <%= addresses_form.text_field :house_no, class: "form-control",  autofocus: true%><br>
+        </div>
+
+          <div class="field">
+          <%= addresses_form.label :"Street : " %>
+          <%= addresses_form.text_field :street, class: "form-control",autofocus: true%><br>
+        </div>
+
+          <div class="field">
+          <%= addresses_form.label :"City : "%>
+          <%= addresses_form.text_field :city,class: "form-control", autofocus: true%><br>
+        </div>
+
+        <div class="field">
+          <%= addresses_form.label :"State : " %>
+          <%= addresses_form.text_field :state,class: "form-control", autofocus: true%><br>
+        </div>
+
+        <div class="field">
+          <%= addresses_form.label :"Pincode : " %>
+          <%= addresses_form.text_field :postal_code,class: "form-control", autofocus: true%><br>
+        </div>
+
+      <%end%>
+      <%= %>
+      <div class="form-group">
+        <%= f.label :"Email : " %>
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :"Password : " %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :"Password Confirmation : " %>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+      </div>
+
+      <div class="form-group text-center">
+        <%= f.submit "Sign up", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+.card {
+  max-width: 400px;
+  margin: 50px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+</style>

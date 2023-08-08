@@ -77,7 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_094646) do
     t.index ["name"], name: "index_roles_on_name"
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
-  
 
   create_table "trainer_coaches", force: :cascade do |t|
     t.string "first_name"

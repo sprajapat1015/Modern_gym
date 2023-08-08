@@ -1,9 +1,11 @@
 class CoursesController < ApplicationController
   def index
+    byebug
     @courses = Course.all
   end
   
   def show
+    # @trainer_coach = TrainerCoach.find(params[:course_id])
     @course = Course.find(params[:id ])
   end
 

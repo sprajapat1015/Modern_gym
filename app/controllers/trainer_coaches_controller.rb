@@ -1,5 +1,5 @@
 class TrainerCoachesController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   
   def index
     @trainer_coaches = TrainerCoach.all
@@ -14,6 +14,7 @@ class TrainerCoachesController < ApplicationController
   end
 
   def create
+    # byebug
 
     @trainer_coach = TrainerCoach.new(trainer_coach_params)
 
@@ -52,7 +53,7 @@ class TrainerCoachesController < ApplicationController
   private
 
   def trainer_coach_params
-    params.require(:trainer_coach).permit(:first_name, :last_name, :phone_number,:expertise,:user_id )
+    params.require(:trainer_coach).permit(:first_name, :last_name, :phone_number,:expertise )
   end
 
 end

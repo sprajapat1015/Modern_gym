@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <h3>Your Logo</h3>
+        <h3>Fittos Gym</h3>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,41 +46,45 @@
 
 
 
-<div class="login-card">
-  <h2>Log in</h2>
+<div class="login" style="padding-top: 7%">
+  <div class="login-card" style="padding-top: 50px">
+        <h2>Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+
+        <div class="actions">
+          <%= f.submit "Log in" %>
+        </div>
+
+      <% end %>
+
+
+
+
+        <% end %>
+
+        <%#= render "devise/shared/links" %>
   </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-
-
-
-  <% end %>
-
-  <%= render "devise/shared/links" %>
 </div>
 
 
@@ -146,3 +150,25 @@
 
 
   </style>
+
+<style>
+footer{
+  /* for hiding footer  */
+  /* display: none;   */
+  position: static;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  left: 0;
+  color: rgb(1, 62, 116);
+  background-color: #fafafa;
+  padding: 1px;
+  position: fixed;
+  bottom: 0;
+  text-shadow:  2px 2px 8px rgb(157, 157, 157);
+}
+</style>
+<footer>
+  <p>Fitoos Gym &copy; Copyright All Rights Reserved.</p>
+  <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+</footer>

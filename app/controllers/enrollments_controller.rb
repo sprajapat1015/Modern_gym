@@ -8,16 +8,17 @@ class EnrollmentsController < ApplicationController
   end
 
   def new
-    @user = User.find_by(params[:user_id])
+    @user = User.find(params[:user_id])
     @enrollment = @user.enrollments.new
   end
 
   def create
-    @user = User.find_by(params[:user_id])
+    # byebug
+    @user = User.find(params[:user_id])
     # byebug
     @enrollment = @user.enrollments.new(enrollment_params)
     if @enrollment.save
-      redirect_to @enrollment
+      redirect_to root_path
     else 
       render :new, status: :unprocessable_entity
     end
@@ -48,7 +49,7 @@ class EnrollmentsController < ApplicationController
 
   private
   def enrollment_params
-    params.require(:enrollment).permit(:enrollment_date,:course_id)
+    params.require(:enrollment).permit(:enrollment_date,:course_id, :user_id)
   end
 
 

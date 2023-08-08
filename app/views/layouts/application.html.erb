@@ -8,14 +8,30 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <%# <style>
+
+    footer {
+         /* position: fixed; */
+        background-color: #383a3e;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: azure;
+    }
+
+
+    </style> %>
   </head>
 
   <body>
-    <%# debugger %>
-    <%# if current_user.sign_in?%>
+
       <%= yield %>
-    <%# else %>
-      <%# <h1> hello </h1> %>
-    <%# end %>
+    <%# <footer>
+    <p>&copy; 2023 Your Website Name. All rights reserved.</p>
+    <p>Contact: www.bestpeers.com</p>
+</footer> %>
+
+
   </body>
 </html>
