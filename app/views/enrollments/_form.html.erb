@@ -1,45 +1,80 @@
 
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <% if current_user.memberships.any? %>
+        <div class="enrollment-form-card">
+      <h3> Enrollment Form </h3>
+          <%= form_with model: [current_user, current_user.enrollments.build] do |form| %>
+            <div class="form-group">
+              <%= form.label :enrollment_date %>
+              <%= form.date_field :enrollment_date, value: Date.today ,class: "form-control" %>
+            </div>
 
-<% if (current_user.memberships.any?)  %>
+            <div class="form-group">
+              <%= form.label :"Select Class With Your Preferable time" %>
+              <%= form.select :course_id, options_for_select(Course.all.map { |c| ["#{c.start_time.in_time_zone('Asia/Kolkata').strftime("%H:%M %Z")} - #{c.class_name}", c.id] }), include_blank: true, class: "form-control" %>
+            </div>
 
+            <%= form.hidden_field :user_id, value: @user.id %>
 
-
-  <%= form_with model: [current_user, current_user.enrollments.build] do |form| %>
-
-
-  
-
-    <%= form.label :enrollment_date %>
-    <%= form.date_field :enrollment_date %>
-
-
-    <%#= form.label :course_id %>
-    <%#= form.text_field :course_id %> 
-
-      <%# <div class="field">  %>
-      <%#= form.label :cours_id %>
-      <%#= form.select :course_id, options_for_select(Course.all.map { |c| [c.class_name, c.id] }), include_blank: true %>
-    <%# </div> %>
-
-      <div class="field">
-      <%= form.label :"Select Class With Your Preferable time" %>
-      <%= form.select :course_id, options_for_select(Course.all.map { |c| ["#{c.start_time.in_time_zone('Asia/Kolkata').strftime("%H:%M %Z")} - #{c.class_name}", c.id] }), include_blank: true %>
-
+            <div class="form-group text-center">
+              <%= form.submit "Enroll", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="enrollment-error-card">
+          <h1>Please Get Membership First</h1>
+          <p>You are eligible for enrollment after getting a membership.</p>
+        </div>
+      <% end %>
     </div>
-  
-    <%= form.hidden_field :user_id, value: @user.id%> 
-
-    <%# = form.hidden_field :cours_id, value:@trainer_coach.courses.limit(1).id %>
-
-    <%= form.submit  %>
-
-  <% end %>
-  <% else %>
-
-  <h1>  Please get Membership First then you have eligible for Getting Enrollment </h1>
-  
-<% end %>
+  </div>
+</div>
 
 
 
+<style>
+/* Add this CSS to your stylesheet or style tag */
+.container {
+  margin-top: 50px;
+}
 
+.enrollment-form-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.enrollment-error-card {
+  border: 1px solid #e74c3c;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f8d7da;
+  color: #721c24;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+</style>

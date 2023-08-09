@@ -18,23 +18,25 @@
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
+            <% if current_user.has_role? :member %>
             <a
               class="nav-link active"
               aria-current="page"
               href="/users/<%= current_user.id %>/enrollments/new"
               >Enroll Class</a
             >
+            <%end%>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="#">Courses</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Blog</a>
+            <a class="nav-link active" href="#"></a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Event</a>
+            <a class="nav-link active" aria-current="page" href="#"></a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"></a>
           </li>
         </ul>
         <form class="">
@@ -72,9 +74,11 @@
   </div>
 </div>
 
-<%= link_to "Update", edit_user_path(@user) ,class: "nav_bar" %>
+<%= link_to "Update", edit_user_path(@user) ,class: "btn btn-primary" %>
 <br />
 
+
+<% if current_user.has_role? :member %>
 <div
   class="card"
   style="
@@ -86,25 +90,31 @@
   "
 >
   <%# <img src="img1.png" class="card-img-top" alt="..." /> %>
+
   <div class="card-body">
     <%#byebug%>
     <h3>Membership Details</h3>
-    <%# if current_user.has_role? :coach%> <% if (current_user.memberships.any?)  %>
-     <% @user.memberships.each do |membership| %>
-    <h5 class="card-title">Membership ID : <%= membership.id %></h5>
-    <p class="card-text">Start Date : <%= membership.start_date.strftime("%d-%m-%Y") %></p>
-    <p class="card-text">End Date : <%= membership.end_date.strftime("%d-%m-%Y") %></p>
-    <p class="card-text">Status : <%= membership.status %></p>
-    <%end%> <% else %>
-    <p>Memberships Not Found</p>
-    <a href="/users/<%= current_user.id %>/memberships/new">
-      <%= "Get Memebership" %>
-    </a>
-    <%end%> <%#end%>
+      <%# if current_user.has_role? :member %>
+      <%# if current_user.has_role? :coach%> <% if (current_user.memberships.any?)  %>
+      <% @user.memberships.each do |membership| %>
+      <h5 class="card-title">Membership ID : <%= membership.id %></h5>
+      <p class="card-text">Start Date : <%= membership.start_date.strftime("%d-%m-%Y") %></p>
+      <p class="card-text">End Date : <%= membership.end_date.strftime("%d-%m-%Y") %></p>
+      <p class="card-text">Status : <%= membership.status %></p>
+      <%end%> <% else %>
+      <p>Memberships Not Found</p>
+      <a href="/users/<%= current_user.id %>/memberships/new">
+        <%= "Get Memebership" %>
+      </a>
+     
+    <%end%>
   </div>
 </div>
-
+ <%end%> 
 <%# <%= trainer_coach.first.expertise %>
+
+
+<% if current_user.has_role? :member %>
 
 <div
   class="card"
@@ -133,11 +143,16 @@
   </div>
 </div>
 
+<%end%>
+
+
+
+<% if current_user.has_role? :member %>
 <div
   class="card"
   style="
     width: 40rem;
-    margin-top: -290px;
+    margin-top: -115px;
     margin-bottom: 113px;
     margin-right: 11px;
     margin-left: 69px;
@@ -182,3 +197,4 @@
     </table>
   </div>
 </div>
+<%end%>

@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <h3>Your Logo</h3>
+        <h3>Modern Gym</h3>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -35,5 +35,64 @@
   </nav>
 </div>
 
-<%= image_tag 'image.png', style: 'height:100%;width:100%;margin-bottom:200px;' %>
 
+<%= video_tag "video2.mp4",poster: "image.png", autoplay: :autoplay, muted: :muted, loop: :loop, autobuffer: true ,style: "height:100%;width:100%;margin-bottom:200px;"%>
+
+<%# controls: true, %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+   /* Reset some default styles for consistency */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for header */
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Styling for blog post */
+.blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.blog-post h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Gym Sanctuary</h1>
+  </header>
+  <main>
+    <article class="blog-post">
+      <h2>Nestled Amidst the Urban Hustle: A Haven of Vitality and Transformation</h2>
+      <p>Nestled amidst the urban hustle, our gym beckons as a haven of vitality and transformation...</p>
+    </article>
+  </main>
+</body>
+</html>
+
+  <%= image_tag 'image.png', style: 'height:100%;width:100%;margin-bottom:200px;' %>

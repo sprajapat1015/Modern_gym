@@ -1,20 +1,56 @@
-<%= form_with model: [current_user, current_user.payments.build] do |form| %>
-   <%#= form.label :membership_id %>
-<%#= form.collection_select(:membership_id, current_user.memberships, :id, :name) %>
 
 
 
-  <%= form.hidden_field :membership_id, value: current_user.memberships.first.id%>
+
+
+<div class="card">
+  <div class="card-body">
+    <h3> Payment </h3>
+    <%= form_with model: [current_user, current_user.payments.build], html: { class: 'payment-form' } do |form| %>
+      <%= form.hidden_field :membership_id, value: current_user.memberships.first.id %>
+
+      <div class="form-group">
+        <%= form.label :payment_date %>
+        <%= form.date_field :payment_date, value: Date.today, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :amount %>
+        <%= form.text_field :amount, value: 2999, class: 'form-control' %>
+      </div>
+
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <div class="text-center">
+        <%= form.submit  "Pay",class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .card {
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .payment-form .form-group {
+    margin-bottom: 15px;
+  }
+
+  .payment-form label {
+    font-weight: bold;
+  }
+
+  .payment-form .btn-primary {
+    width: 100%;
+  }
+</style>
 
 
 
-  <%= form.label :payment_date %>
-  <%= form.date_field :payment_date %>
-
-  <%= form.label :amount %>
-  <%= form.text_field :amount %>
-
-  <%= form.hidden_field :user_id, value: current_user.id %>
-
-  <%= form.submit %>
-<% end %>

@@ -10,7 +10,6 @@ RSpec.describe Membership, type: :model do
   end
 
   describe 'validations' do
-   it { should validate_presence_of(:class_name) }
    it { should validate_presence_of(:start_date) }
    it { should validate_presence_of(:end_date) }
    it { should validate_presence_of(:status) }

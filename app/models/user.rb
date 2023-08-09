@@ -28,10 +28,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :assign_default_role
+  # after_create :assign_default_role
 
-  def assign_default_role
-    self.add_role(:member) if self.roles.blank?
-  end
+  # def assign_default_role
+  #   self.add_role(:member) if self.roles.blank?
+  # end
 
 end

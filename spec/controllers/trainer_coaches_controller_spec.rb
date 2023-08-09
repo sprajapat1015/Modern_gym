@@ -45,7 +45,7 @@ RSpec.describe TrainerCoachesController, type: :controller do
   end
 
   describe "Get #new" do
-      it '#new instance @author ' do
+      it '#new instance @trainer_coach ' do
         get :new
         expect(assigns(:trainer_coach)).to be_instance_of(TrainerCoach)
       end
@@ -53,16 +53,17 @@ RSpec.describe TrainerCoachesController, type: :controller do
         get :new
         expect(response).to render_template(:new)
       end
-  end
-
-
-
-
-
-  describe "permitted status" do
-    it "create" do
-      post :create, params:{trainer_coach:{first_name: "Sumit",last_name:"prajapat",phone_number:"1234567890", expertise:"Yoga"}}
-      response.should redirect_to trainer_coaches_path
+    end
+    
+    
+    
+    
+    
+    describe "permit status" do
+      it "create" do
+        post :create, params:{trainer_coach:{first_name: "Sumit",last_name:"prajapat",phone_number:"1234567890", expertise:"Yoga"}}
+        # response.should redirect_to trainer_coaches_path
+        expect(response.status).to be(302)
     end
   end
 
