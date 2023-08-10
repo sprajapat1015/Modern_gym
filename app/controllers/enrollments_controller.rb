@@ -1,11 +1,13 @@
 class EnrollmentsController < ApplicationController
   def index
-    @enrollments = Enrollment.all
+    @user = User.find(params[:user_id])
+    @enrollment = @user.enrollments
+    # render json: @enrollment
   end
   
-  def show
-    @enrollment = Enrollment.find(params[:id ])
-  end
+  # def show
+  #   @enrollment = Enrollment.find(params[:id ])
+  # end
 
   def new
     @user = User.find(params[:user_id])
@@ -13,17 +15,14 @@ class EnrollmentsController < ApplicationController
   end
 
   def create
-    # byebug
     @user = User.find(params[:user_id])
-    # byebug
     @enrollment = @user.enrollments.new(enrollment_params)
     if @enrollment.save
-      redirect_to root_path
+      redirect_to @user
     else 
       render :new, status: :unprocessable_entity
     end
   end
-
 
   def edit
     @enrollment = Enrollment.find(params[:id])

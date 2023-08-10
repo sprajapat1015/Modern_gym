@@ -9,10 +9,6 @@ class TrainerCoach < ApplicationRecord
   validates :expertise, presence: true 
 
 
-   after_create :assign_default_role
 
-  def assign_default_role
-    self.add_role(:coach) if self.roles.blank?
-  end
 end
 

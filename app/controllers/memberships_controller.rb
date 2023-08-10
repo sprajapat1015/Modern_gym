@@ -1,10 +1,14 @@
 
 class MembershipsController < ApplicationController
   before_action :set_user, only: [:new, :create]
-  before_action :authenticate_user!
+  def index
+    @user = User.find(params[:user_id])
+    @membership = @user.memberships
+  end
 
   def new
-    @membership = Membership.new
+    @user = User.find(params[:user_id])
+    @membership = @user.memberships.new
   end
 
   def create
@@ -14,7 +18,8 @@ class MembershipsController < ApplicationController
       # redirect_to root_path, notice: 'Membership was successfully created.'
       redirect_to new_user_payment_path
      else
-      redirect_to @user, notice: 'Membership not created'
+      # redirect_to @user, notice: 'Membership not created'
+      render :new, status: :unprocessable_entity
      end
   end
 

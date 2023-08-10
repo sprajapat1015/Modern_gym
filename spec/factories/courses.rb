@@ -7,7 +7,8 @@ FactoryBot.define do
     description { "Example Course" }
     start_time { DateTime.now }
     end_time { DateTime.now + 1.hour }
-    capacity { 220 }
+    capacity { 20 }
+    trainer_coach
     association :trainer_coach, factory: :trainer_coach
   end
 

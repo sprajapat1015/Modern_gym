@@ -2,8 +2,8 @@ class CoursesController < ApplicationController
 
   def index
     # byebug
-    trainer_coach = TrainerCoach.find(params[:trainer_coach_id])
-    @courses = trainer_coach.courses.all
+    @trainer_coach = TrainerCoach.find(params[:trainer_coach_id])
+    @courses = @trainer_coach.courses.all
     # @courses = Courses.all
 
   end
@@ -29,29 +29,31 @@ class CoursesController < ApplicationController
      end
   end
 
-  def edit
-    @course = Course.find(params[:id])
+  # def edit
+  #   # @course = Course.find(params[:id]
+  #   byebug
+  #   @trainer_coach = TrainerCoach.find(params[:trainer_coach_id])
+  #   @course = @trainer_coach.course.find(params[:id])
+  # end
 
-  end
+  # def update
+  #   @course = Course.find(params[:id])
 
-  def update
-    @course = Course.find(params[:id])
+  #   if @course.update(course_params)
+  #     redirect_to @course
+  #   else 
+  #     render :new, status: :unprocessable_entity
+  #   end
 
-    if @course.update(course_params)
-      redirect_to @course
-    else 
-      render :new, status: :unprocessable_entity
-    end
+  # end
 
-  end
+  # def destroy
+  #   @course =Course.find(params[:id])
+  #   @course.destroy
 
-  def destroy
-    @course =Course.find(params[:id])
-    @course.destroy
+  #   redirect_to root_path, status: :see_other
 
-    redirect_to root_path, status: :see_other
-
-  end
+  # end
 
 
   private

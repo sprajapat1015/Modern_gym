@@ -1,6 +1,5 @@
 class TrainerCoachesController < ApplicationController
   # before_action :authenticate_user!
-  
   def index
     @trainer_coaches = TrainerCoach.all
   end
@@ -18,7 +17,6 @@ class TrainerCoachesController < ApplicationController
     @trainer_coach = TrainerCoach.new(trainer_coach_params)
 
     if @trainer_coach.save
-      # @trainer_coach.add_role :coach, @trainer_coach 
       redirect_to  trainer_coaches_path
     else 
       render :new, status: :unprocessable_entity

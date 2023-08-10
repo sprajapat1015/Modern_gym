@@ -1,9 +1,10 @@
+
 require  'rails_helper'
-RSpec.describe MembershipsController, type: :controller do
-  # let(:user) { FactoryBot.create(:user) }
+RSpec.describe PaymentsController, type: :controller do
   
   before(:each) do 
     @user= FactoryBot.create(:user)
+    @membership = FactoryBot.create(:membership, user_id: @user.id)
   end
 
 #---------------------------------------------------------------------------------------
@@ -11,7 +12,7 @@ RSpec.describe MembershipsController, type: :controller do
   describe "Get #index" do
     context 'successful responses' do
       it "index" do
-        Membership.create(class_name:"yoga", start_date: Date.today, end_date: Date.today, status:"Active", user_id: @user.id)
+        Payment.create(payment_date: Date.today, amount: 200, user_id: @user.id)
         get :index  ,params:{user_id: @user.id }
         expect(response).to be_successful 
       end
@@ -22,26 +23,27 @@ RSpec.describe MembershipsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new Membership" do
+      it "creates a new Payment" do
         expect {
-          post :create, params: { user_id: @user.to_param, membership: FactoryBot.attributes_for(:membership) }
-        }.to change(Membership, :count).by(1)
+          post :create, params: { user_id: @user.to_param, payment: { amount: 200, payment_date: Date.today, user_id: @user.id, membership_id: @membership.id } }
+        }.to change(Payment, :count).by(1)
       end
   
       it "redirects to the new_user_payment_path" do
-        post :create, params: { user_id: @user.to_param, membership: FactoryBot.attributes_for(:membership) }
-        expect(response).to redirect_to(new_user_payment_path)
+        post :create, params: { user_id: @user.to_param, payment: { amount: 20, payment_date: Date.today, user_id: @user.id, membership_id: @membership.id } }
+        expect(response.status).to be(302)
+        response.should redirect_to root_path
       end
     end
   
     context "with invalid params" do
-      it "assigns a newly created but unsaved Membership as @membership" do
-        post :create, params: { user_id: @user.to_param, membership: { class_name: nil } }
-        expect(assigns(:membership)).to be_a_new(Membership)
+      it "assigns a newly created but unsaved Payment as @Payment" do
+        post :create, params: { user_id: @user.to_param, payment: { payment_date: nil } }
+        expect(assigns(:payment)).to be_a_new(Payment)
       end
   
       it "re-renders the :new template" do
-        post :create, params: { user_id: @user.to_param, membership: { class_name: nil } }
+        post :create, params: { user_id: @user.to_param, payment: { payment_date: nil } }
         # byebug
         expect(response).to render_template(:new)
         expect(response).to have_http_status(:unprocessable_entity)
@@ -52,9 +54,9 @@ RSpec.describe MembershipsController, type: :controller do
 #------------------------------------------------------------------------------------------
 
   describe "Get #new" do
-    it '#new instance @enrollment ' do
+    it '#new instance @payment ' do
       get :new, params: { user_id: @user.id }
-      expect(assigns(:membership)).to be_instance_of(Membership)
+      expect(assigns(:payment)).to be_instance_of(Payment)
       expect(response).to have_http_status(:success)
       expect(response).to render_template(:new)
     end
