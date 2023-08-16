@@ -1,18 +1,18 @@
 databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
+  - name: modern_gym
+    databaseName: modern_gym
+    user: modern_gym_user
 
 services:
   - type: web
-    name: mysite
+    name: fitoos_gym
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: mysite
+          name: modern_gym
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
