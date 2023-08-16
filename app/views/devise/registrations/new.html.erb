@@ -1,3 +1,4 @@
+<!--
 <div class="container-flouid">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
@@ -39,7 +40,7 @@
     </div>
   </nav>
 </div>
-
+-->
 
 
 
@@ -177,7 +178,7 @@ margin-top: 53px;
   </style> %>
 
 
-
+<!--
 
   <div class="card">
   <div class="card-header">
@@ -192,7 +193,6 @@ margin-top: 53px;
         <%= f.text_field :first_name, class: "form-control", autofocus: true %>
       </div>
 
-      <!-- Add other form fields here -->
        <div class="field">
           <%= f.label :"Last Name :" %>
           <%= f.text_field :last_name, class: "form-control", autofocus: true%><br>
@@ -276,6 +276,225 @@ margin-top: 53px;
   </div>
 </div>
 
+-->
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+<%= stylesheet_link_tag 'registration/new' %>
+    <%= stylesheet_link_tag 'home/style' %>
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Features', '#why-us' %></li>
+                <li class="nav-item"><%= link_to 'Explore', '#explore' %></li>
+                <li class="nav-item"><%= link_to 'Register', '/users/sign_up' %></li>
+                <li class="nav-item"><%= link_to 'Login', '/users/sign_in' %></li>
+            </ul>
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to 'Register', '/users/sign_up', class: 'btn' %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+      <div class="header">
+        <div class="text">
+          <h1>Sign Up</h1>
+          <p class="secondary">Welcome back! Please login to continue.</p>
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
+        </div>
+      </div>
+    </div>
+    <div class="section"style="background: radial-gradient(#111, #071a1a);">
+      <div class="flex1">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-group">
+        <%= f.label :"First Name :" %>
+        <%= f.text_field :first_name, class: "form-control", autofocus: true %>
+      </div>
+
+      <!-- Add other form fields here -->
+       <div class="field">
+          <%= f.label :"Last Name :" %>
+          <%= f.text_field :last_name, class: "form-control", autofocus: true%><br>
+        </div>
+        <div class="field">
+          <%= f.label :"date of Birth :" %>
+          <%#= f.date_field :, value: resource.date_of_birth.strftime("%Y-%m-%d"), class: "form-control", autofocus: true %>
+          <%= f.date_field :date_of_birth, class: "form-control", autofocus: true%><br>
+
+        </div>
+
+        <div class="field">
+          <%= f.label :"Mobile Number : " %>
+          <%= f.text_field :phone_number, class: "form-control", autofocus: true%><br>
+        </div>
+        <div class="field">
+          <%= f.label :gender, "Gender : " %>
+        <%= f.radio_button :gender, "Male" %>
+        <%= f.label :male, "Male" %>
+        <%= f.radio_button :gender, "Female" %>
+        <%= f.label :female, "Female" %>
+        </div><br>
+
+      <%= f.fields_for :address_attributes , resource.address do |addresses_form| %>
+      <%#= f.fields_for :addresses do |addresses_form| %>
+        <div class="field">
+          <%= addresses_form.label :"House No. :                     " %>
+          <%= addresses_form.text_field :house_no, class: "form-control",  autofocus: true%><br>
+        </div>
+
+          <div class="field">
+          <%= addresses_form.label :"Street : " %>
+          <%= addresses_form.text_field :street, class: "form-control",autofocus: true%><br>
+        </div>
+
+          <div class="field">
+          <%= addresses_form.label :"City : "%>
+          <%= addresses_form.text_field :city,class: "form-control", autofocus: true%><br>
+        </div>
+
+        <div class="field">
+          <%= addresses_form.label :"State : " %>
+          <%= addresses_form.text_field :state,class: "form-control", autofocus: true%><br>
+        </div>
+
+        <div class="field">
+          <%= addresses_form.label :"Pincode : " %>
+          <%= addresses_form.text_field :postal_code,class: "form-control", autofocus: true%><br>
+        </div>
+
+      <%end%>
+      <%= %>
+      <div class="form-group">
+        <%= f.label :"Email : " %>
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :"Password : " %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :"Password Confirmation : " %>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
+      </div>
+
+
+
+      <div class="form-group text-center">
+        <%= f.submit "Sign up", class: "btn btn-primary" %>
+      </div>
+    <%= render "devise/shared/links" %>
+
+
+
+    <% end %>
+
+        
+
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+  
+
+    <!-- Why Us -->
+    <div class="section" id="why-us">
+        <div class="container flex">
+            <div class="text">
+                <h2 class="primary mb">Why Choose Us?</h2>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+            </div>
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/why-us.png', alt: '') %>
+            </div>
+        </div>
+    </div>
+    <!-- End Why Us -->
+
+    <!-- Explore -->
+    <div class="section" id="explore">
+        <div class="container flex">
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/explore.jpg', alt: '') %>
+            </div>
+            <div class="text">
+                <h2 class="primary mb">
+                    Explore Our Fitness <br />
+                    Studio
+                </h2>
+                <p class="tertiary mb">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+                    esse vitae ratione quos maiores eveniet temporibus illum! Eligendi
+                    amet officia unde sint totam ut optio. Molestiae, illo quia?
+                </p>
+                <%= link_to 'Get Started Now', '/users/sign_up', class: 'btn mt' %>
+            </div>
+        </div>
+    </div>
+    <!-- End Explore -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
 
 
 
@@ -284,48 +503,3 @@ margin-top: 53px;
 
 
 
-
-
-
-
-
-
-
-
-<style>
-.card {
-  max-width: 400px;
-  margin: 50px auto;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-  background-color: #f0f0f0;
-  padding: 10px;
-  font-weight: bold;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-}
-</style>

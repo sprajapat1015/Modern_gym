@@ -1,7 +1,7 @@
 
 
 
-
+<!--
 
 <div class="card">
   <div class="card-body">
@@ -11,12 +11,12 @@
 
       <div class="form-group">
         <%= form.label :payment_date %>
-        <%= form.date_field :payment_date, value: Date.today, class: 'form-control' %>
+        <%= form.date_field :payment_date, value: Date.today, class: 'form-control',readonly: true %>
       </div>
 
       <div class="form-group">
         <%= form.label :amount %>
-        <%= form.text_field :amount, value: 2999, class: 'form-control' %>
+        <%= form.text_field :amount, value: 999, class: 'form-control',readonly: true %>
       </div>
 
       <%= form.hidden_field :user_id, value: current_user.id %>
@@ -28,29 +28,100 @@
   </div>
 </div>
 
-<style>
-  .card {
-    width: 400px;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .payment-form .form-group {
-    margin-bottom: 15px;
-  }
-
-  .payment-form label {
-    font-weight: bold;
-  }
-
-  .payment-form .btn-primary {
-    width: 100%;
-  }
-</style>
+-->
 
 
 
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%= stylesheet_link_tag "payment/form" %>
+    <%= stylesheet_link_tag 'home/style' %>
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Trainer Details', '/trainer_coaches' %></li>
+            </ul>  
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'btn', data: { "turbo-method": :delete } %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+      <div class="card">
+  <div class="card-body">
+    <h3> Payment </h3>
+    <%= form_with model: [current_user, current_user.payments.build], html: { class: 'payment-form' } do |form| %>
+      <%= form.hidden_field :membership_id, value: current_user.memberships.first.id %>
+
+      <div class="form-group">
+        <%= form.label :payment_date %>
+        <%= form.date_field :payment_date, value: Date.today, class: 'form-control',readonly: true %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :amount %>
+        <%= form.text_field :amount, value: 999, class: 'form-control',readonly: true %>
+      </div>
+
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <div class="text-center">
+        <%= form.submit  "Pay",class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+          
+                 
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
+  

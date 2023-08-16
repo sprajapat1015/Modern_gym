@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TrainerCoachesController, type: :controller do
   let(:trainer_coach) { create(:trainer_coach) }
-
+  # byebug
   before(:each) do 
     @trainer_coach= FactoryBot.create(:trainer_coach)
   end
@@ -102,3 +102,5 @@ RSpec.describe TrainerCoachesController, type: :controller do
 
 
 end
+
+

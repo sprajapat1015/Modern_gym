@@ -1,3 +1,5 @@
+<!--
+
 <div class="card">
   <div class="card-body">
     <h1> Courses Forms </h1>
@@ -33,3 +35,131 @@
     <% end %>
   </div>
 </div>
+
+-->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%#= stylesheet_link_tag "trainer/index" %>
+    <%= stylesheet_link_tag "course/new" %>
+    
+    <%= stylesheet_link_tag 'home/style' %>
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Trainer Details', '/trainer_coaches' %></li>
+            </ul>
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'btn', data: { "turbo-method": :delete } %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+      <div class="header">
+        <div class="text">
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
+        </div>
+      </div>
+    </div>
+    <div class="section"style="background: radial-gradient(#111, #071a1a);">
+      <div class="flex">
+
+        <div class="card">
+  <div class="card-body">
+    <h1> Courses Forms </h1>
+    <%= form_with model: [@trainer_coach, @trainer_coach.courses.build] do |form| %>
+      
+      <div class="form-group">
+        <%= form.label :class_name %>
+        <%= form.select :class_name, ["yoga", "Weight lifting", "Aerobics"], include_blank: true, class: "form-control" %>
+      </div>
+
+        <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_field :description, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :start_time %>
+        <%= form.time_field :start_time, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :end_time %>
+        <%= form.time_field :end_time, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :capacity %>
+        <%= form.text_field :capacity, class: "form-control" %>
+      </div>
+
+      <%= form.submit class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
+
+
+
+
+          
+
+                 
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+  
+
+
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
+  
+

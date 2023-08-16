@@ -1,3 +1,4 @@
+<!--
 <div class="container-flouid">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
@@ -26,25 +27,17 @@
 
         </ul>
         <form class="">
-          <a class="btn btn-outline-primary mr-2" href="/trainer_coaches"> Trainers Details</a>
+          <% if user_signed_in? %>
+            <a class="btn btn-outline-primary mr-2" href="/trainer_coaches"> Trainers Details</a>
+          <%end%>
           <a class="btn btn-outline-primary mr-2" href=" /users/sign_in">Login</a>
             <a class="btn btn-outline-success" href="/users/sign_up">Becomer Member</a>
-          <%# <a class="btn btn-outline-success" href="#">Become member</a> %>
-
-          
         </form>
-
       </div>
     </div>
   </nav>
-</div>
-
-
-
-
-
-
-
+</div> -->
+<!--
 
 <div class="login" style="padding-top: 7%">
   <div class="login-card" style="padding-top: 50px">
@@ -77,98 +70,172 @@
         </div>
 
       <% end %>
-
-
-
-
-        <% end %>
-
+    <% end %>
         <%= render "devise/shared/links" %>
   </div>
 </div>
 
 
-<style>
-/* Basic styling for the login card */
-.login-card {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Styling for form fields */
-.field {
-  margin-bottom: 15px;
-}
-
-/* Styling for labels */
-.field label {
-  font-weight: bold;
-}
-
-/* Styling for input fields */
-.field input[type="email"],
-.field input[type="password"],
-.field input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-/* Styling for Remember Me checkbox */
-.field .remember-me-label {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 5px;
-}
-
-/* Styling for Submit button */
-.actions {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.actions input[type="submit"] {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* Media query for responsiveness */
-@media (max-width: 600px) {
-  .login-card {
-    max-width: 100%;
-  }
-}
 
 
-  </style>
 
-<style>
-footer{
-  /* for hiding footer  */
-  /* display: none;   */
-  position: static;
-  width: 100%;
-  height: auto;
-  text-align: center;
-  left: 0;
-  color: rgb(1, 62, 116);
-  background-color: #fafafa;
-  padding: 1px;
-  position: fixed;
-  bottom: 0;
-  text-shadow:  2px 2px 8px rgb(157, 157, 157);
-}
-</style>
 <footer>
   <p>Fitoos Gym &copy; Copyright All Rights Reserved.</p>
-  <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+  <p><a href="fitoos.gym@gmail.com">fitoos.gym@gmail.com</a></p>
 </footer>
+
+-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%= stylesheet_link_tag "session/sign_in" %>
+    <%= stylesheet_link_tag 'home/style' %>
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Features', '#why-us' %></li>
+                <li class="nav-item"><%= link_to 'Explore', '#explore' %></li>
+                <li class="nav-item"><%= link_to 'Register', '/users/sign_up' %></li>
+                <li class="nav-item"><%= link_to 'Login', '/users/sign_in' %></li>
+            </ul>
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to 'Register', '/users/sign_up', class: 'btn' %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+
+
+      <div class="header">
+        <div class="text">
+          <h1>Login</h1>
+          <p class="secondary">Welcome back! Please login to continue.</p>
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="flex">
+                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",style: 'width: 496px' %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "current-password",style: 'width: 496px' %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+            <div class="actions">
+              <%= f.submit "Log in" %>
+            </div>
+                <%= render "devise/shared/links" %>
+          <% end %>
+
+
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+  
+
+    <!-- Why Us -->
+    <div class="section" id="why-us">
+        <div class="container flex">
+            <div class="text">
+                <h2 class="primary mb">Why Choose Us?</h2>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+            </div>
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/why-us.png', alt: '') %>
+            </div>
+        </div>
+    </div>
+    <!-- End Why Us -->
+
+    <!-- Explore -->
+    <div class="section" id="explore">
+        <div class="container flex">
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/explore.jpg', alt: '') %>
+            </div>
+            <div class="text">
+                <h2 class="primary mb">
+                    Explore Our Fitness <br />
+                    Studio
+                </h2>
+                <p class="tertiary mb">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+                    esse vitae ratione quos maiores eveniet temporibus illum! Eligendi
+                    amet officia unde sint totam ut optio. Molestiae, illo quia?
+                </p>
+                <%= link_to 'Get Started Now', '/users/sign_up', class: 'btn mt' %>
+            </div>
+        </div>
+    </div>
+    <!-- End Explore -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
+  
+
+

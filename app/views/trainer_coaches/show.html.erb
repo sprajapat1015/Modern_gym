@@ -1,3 +1,4 @@
+<!--
 <div class="container-flouid" >
   <nav class="navbar navbar-expand-lg bg-light" >
     <div class="container">
@@ -30,60 +31,134 @@
           </li>
 
         </ul>
-        <form class="">
 
-            <%= button_to "Sign", destroy_user_session_path, method: :delete %>   
-            <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-
-          <a class="btn btn-outline-success" href="#">Become member</a>
-        </form>
 
       </div>
     </div>
   </nav>
 </div>
 
-<table>
-  <tr>
-    <td>
-      <div class="card" style="width: 30rem; margin-left: 19px;">
-        <div class="card-body">
-          <h3>Trainer Detail</h3>
+      
+<% if current_user.has_role? :admin %>
+<a href="/trainer_coaches/<%=@trainer_coach.id%>/courses/new" class="btn btn-primary">Add Courses</a>
+<%end%>  
 
-          <h5 class="card-title">Name:</h5>
-          <p class="card-text"><%= @trainer_coach.first_name %> <%= @trainer_coach.last_name %></p>
-          <h5 class="card-title">Mobile N0.:</h5>
-          <p class="card-text"><%= @trainer_coach.phone_number %></p>
-          <h5 class="card-title">Expertise:</h5>
-          <p class="card-text"><%= @trainer_coach.expertise %></p>
+<% if current_user.has_role? :admin %>
+<a href="/trainer_coaches/new" class="btn btn-primary"  >Add trainer</a>  
+<%end%>
+
+<% if current_user.has_role? :admin %>
+<a href="/trainer_coaches/<%=@trainer_coach.id%>/edit" class="btn btn-primary">Update</a>
+<%end%>
+  -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%= stylesheet_link_tag 'home/style' %>
+    <%= stylesheet_link_tag 'trainer/show' %>
+
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Trainer Courses', '#why-us' %></li>
+                <li class="nav-item"><%= link_to 'Explore', '#explore' %></li>
+                <li class="nav-item"><%= link_to 'Account', user_path(current_user.id) %></li>
+                <li class="nav-item"><%=link_to "All Courses", trainer_coach_courses_path(@trainer_coach) %></li>
+            </ul>
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'btn', data: { "turbo-method": :delete } %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+
+      <div class="header">
+        <div class="text">
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
         </div>
       </div>
-    </td>
- 
-  </tr>
+    </div>
+    <div class="section"style="background: radial-gradient(#111, #071a1a);">
+      <div class="flex">
+
+        <table>
+          <tr>
+            <td>
+              <div class="card" style=" margin-left: 19px;">
+                <div class="card-body">
+                  <h3>Trainer Detail</h3>
+
+                  <h5 class="card-title">Name:</h5>
+                  <p class="card-text"><%= @trainer_coach.first_name %> <%= @trainer_coach.last_name %></p>
+                  <h5 class="card-title">Mobile N0.:</h5>
+                  <p class="card-text"><%= @trainer_coach.phone_number %></p>
+                  <h5 class="card-title">Expertise:</h5>
+                  <p class="card-text"><%= @trainer_coach.expertise %></p>
+                </div>
+              </div>
+            </td>
+        
+          </tr>
+        </table>
+       
+
+
+
+   
+   
+                 
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+  
+
+    <!-- Why Us -->
+    <div class="section" id="why-us" style="background: radial-gradient(#111, #071a1a);">
+        <div class="container flex">
+            <div class="text">
+              <!-- Trainer courses details start  -->
+              <table>
+
+
   <tr>
     <td>
       <div class="card" style="width: 60rem; margin-left: 19px;">
         <div class="card-body">
           <h3>Courses Details</h3>
 
-                <style>
-                .card-table {
-                    border-collapse: collapse;
-                    width: 100%;
-                }
-
-                .card-table th,
-                .card-table td {
-                    border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;
-                }
-
-                .card-table th {
-                    background-color: #f2f2f2;
-                }
-            </style>
+                
 
             <table class="card-table">
                 <thead>
@@ -118,20 +193,76 @@
     </td>
   </tr>
 </table>
-      
+
 <% if current_user.has_role? :admin %>
 <a href="/trainer_coaches/<%=@trainer_coach.id%>/courses/new" class="btn btn-primary">Add Courses</a>
 <%end%>  
-
-
-
 
 <% if current_user.has_role? :admin %>
 <a href="/trainer_coaches/new" class="btn btn-primary"  >Add trainer</a>  
 <%end%>
 
-
 <% if current_user.has_role? :admin %>
 <a href="/trainer_coaches/<%=@trainer_coach.id%>/edit" class="btn btn-primary">Update</a>
 <%end%>
+
+
+              <!-- Trainer Courses Details end-->
+
+               <!-- <h2 class="primary mb">Why Choose Us?</h2>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+            </div>
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/why-us.png', alt: '') %>
+            </div>
+            -->
+        </div>
+    </div>
+    <!-- End Why Us -->
+
+    <!-- Explore -->
+    <div class="section" id="explore">
+        <div class="container flex">
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/explore.jpg', alt: '') %>
+            </div>
+            <div class="text">
+                <h2 class="primary mb">
+                    Explore Our Fitness <br />
+                    Studio
+                </h2>
+                <p class="tertiary mb">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+                    esse vitae ratione quos maiores eveniet temporibus illum! Eligendi
+                    amet officia unde sint totam ut optio. Molestiae, illo quia?
+                </p>
+                <%= link_to 'Get Started Now', '/users/sign_up', class: 'btn mt' %>
+            </div>
+        </div>
+    </div>
+    <!-- End Explore -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
   
+

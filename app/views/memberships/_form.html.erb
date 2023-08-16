@@ -2,64 +2,23 @@
 
 
 
-
+<!--
 
 <!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background-color: #f4f4f4;
-    }
 
-    .card {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      width: 400px;
-    }
-
-    label, select, input[type="date"], input[type="submit"] {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    input[type="date"],
-    select,
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    input[type="submit"] {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-  </style>
-</head>
 <body>
   <div class="card">
     <h3> Membership Form </h3>
     <%= form_with(model: [@user, @user.memberships.build]) do |form| %>
       <%= form.label :start_date %>
-      <%= form.date_field :start_date, value: Date.today %>
+      <%= form.date_field :start_date, value: Date.today, readonly: true %>
+      <%  @membership.errors.full_messages_for(:start_date).each do |message| %>
+         <%= message%>
+      <%end%>
 
       <%= form.label :end_date %>
-      <%= form.date_field :end_date %>
+      <%= form.date_field :end_date, value: Date.today + 1.month,readonly: true    %>
 
       <%= form.label :status %>
       <%= form.select :status, ["Active", "Deactivate"] %>
@@ -69,3 +28,113 @@
   </div>
 </body>
 </html>
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%= stylesheet_link_tag "membership/form" %>
+    <%= stylesheet_link_tag 'home/style' %>
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Trainer Details', '/trainer_coaches' %></li>
+            </ul>  
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'btn', data: { "turbo-method": :delete } %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+      <div class="header">
+        <div class="text">
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
+        </div>
+      </div>
+    </div>
+    <div class="section"style="background: radial-gradient(#111, #071a1a);">
+      <div class="flex">
+              <div class="card">
+          <h3> Membership Form </h3>
+          <%= form_with(model: [@user, @user.memberships.build]) do |form| %>
+
+          <div class="form-group">
+            <%= form.label :start_date %>
+            <%= form.date_field :start_date, value: Date.today, readonly: true %>
+            <%  @membership.errors.full_messages_for(:start_date).each do |message| %>
+              <%= message%>
+            <%end%>
+          </div>
+
+           <div class="form-group">
+            <%= form.label :end_date %>
+            <%= form.date_field :end_date, value: Date.today + 1.month,readonly: true    %>
+          </div>
+
+           <div class="form-group">
+            <%= form.label :status %>
+            <%= form.select :status, ["Active", "Deactivate"] %>
+          </div>
+
+          <div class="form-group text-center">
+            <%= form.submit "Proceed To Payment" %>
+            </div>
+
+
+
+          <% end %>
+        </div>
+
+
+          
+                 
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
+  
+

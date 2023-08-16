@@ -66,3 +66,4 @@ RSpec.describe PaymentsController, type: :controller do
 
 
 end
+

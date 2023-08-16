@@ -1,3 +1,4 @@
+<!--
 <div class="container-flouid">
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container">
@@ -23,8 +24,8 @@
               class="nav-link active"
               aria-current="page"
               href="/users/<%= current_user.id %>/enrollments/new"
-              >Enroll Class</a
-            >
+              >Enroll Class</a>
+            
             <%end%>
           </li>
           <li class="nav-item">
@@ -46,14 +47,17 @@
           </a>
 
           <a class="btn btn-outline-primary mr-2" href="/trainer_coaches"
-            >Get Trainers Details</a
-          >
-          <a class="btn btn-outline-success" href="#">Become member</a>
+            >Get Trainers Details</a>
         </form>
       </div>
     </div>
   </nav>
 </div>
+
+-->
+
+
+<!--
 
 <div class="card" style="width: 40rem; margin-left: 19px">
   <%# <img src="img1.png" class="card-img-top" alt="..." /> %>
@@ -113,7 +117,7 @@
  <%end%> 
 <%# <%= trainer_coach.first.expertise %>
 
-
+<%#= stylesheet_link_tag  "user/show" %>
 <% if current_user.has_role? :member %>
 
 <div
@@ -127,7 +131,9 @@
   "
 >
   <div class="card-body">
+    
     <h3>Payment Details</h3>
+ 
     <% if ( @user.payments.any? && @user.memberships.any? ) %> <%
     @user.payments.each do |payment| %>
     <h5 class="card-title">Payment ID : <%= payment.id %></h5>
@@ -136,14 +142,15 @@
 
     <%end%> <% else %>
     <p>No payments found.</p>
-    <!--  <a href="/users/<%= current_user.id %>/payments/new">
+   <a href="/users/<%= current_user.id %>/payments/new">
         <%= "Get Payments" %>
-        </a>  -->
+        </a> 
     <%end%>
   </div>
 </div>
 
 <%end%>
+
 
 
 
@@ -172,6 +179,7 @@
         border: 1px solid black; /* Add border to table cells */
         padding: 8px;
         text-align: left;
+        color: black;
       }
     </style>
 
@@ -198,3 +206,296 @@
   </div>
 </div>
 <%end%>
+
+
+
+
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%= stylesheet_link_tag 'home/style' %>
+    <%= stylesheet_link_tag "user/show" %>
+</head>
+<body> 
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Membership Details', '#why-us' %></li>
+                <li class="nav-item"><%= link_to 'My Courses', '#explore' %></li>
+                <li class="nav-item"><%= link_to 'Trainer Details', '/trainer_coaches' %></li>
+                <li class="nav-item"><%= link_to 'Enroll Class', new_user_enrollment_path(current_user.id) %></li>
+
+            </ul>
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'btn', data: { "turbo-method": :delete } %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+      <!-- Profile Details start -->
+      <div class="header">
+        <div class="text">
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="section"style="background: radial-gradient(#111, #071a1a);">
+      <div class="flex"style="background: radial-gradient(#111, #071a1a);">
+
+              <div class="card" style="width: 40rem; margin-left: 19px">
+        <%# <img src="img1.png" class="card-img-top" alt="..." /> %>
+        <div class="card-body">
+          <h3>Profile</h3>
+          <h5 class="card-title">Username: <%= @user.email%></h5>
+          <p class="card-text">Name : <%= @user.first_name%> <%= @user.last_name%></p>
+          <p class="card-text">Gender : <%= @user.gender%></p>
+          <p class="card-text">Date of Birth : <%= @user.date_of_birth%></p>
+          <p class="card-text">Mobile N0. : <%= @user.phone_number%></p>
+          <p class="card-text">
+            Address : <%= @user.address.house_no%>, <%= @user.address.street%>, <%=
+            @user.address.city%>, <%= @user.address.state%>, <%=
+            @user.address.postal_code%>
+          </p>
+
+          <%# <a href="#" class="btn btn-primary">Go somewhere</a> %>
+        </div>
+      </div>
+         <div class="visual">
+        <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/banner-img.png', alt: '') %>
+    </div>
+
+<!-- Profile Details end -->
+
+
+
+
+<!--  payment Details start -->
+    <!-- Payment details end -->
+
+    <!-- Courses details start -->
+    <!-- Courses details end -->
+
+
+        
+                 
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Login endPage -->
+
+  
+
+    <!-- Why Us -->
+    <div class="section" id="why-us">
+        <div class="container flex">
+
+          <!-- Membership details start -->
+              <div class="section">
+      <div class="flex">
+              <% if current_user.has_role? :member %>
+      <div class="card">
+
+        <div class="card-body">
+          <%#byebug%>
+          <h3>Membership Details</h3>
+            <%# if current_user.has_role? :member %>
+            <%# if current_user.has_role? :coach%> <% if (current_user.memberships.any?)  %>
+            <% @user.memberships.each do |membership| %>
+            <h5 class="card-title">Membership ID : <%= membership.id %></h5>
+            <p class="card-text">Start Date : <%= membership.start_date.strftime("%d-%m-%Y") %></p>
+            <p class="card-text">End Date : <%= membership.end_date.strftime("%d-%m-%Y") %></p>
+            <p class="card-text">Status : <%= membership.status %></p>
+            <%end%> <% else %>
+            <p>Memberships Not Found</p>
+          <%= link_to 'Get Memebership', new_user_membership_path(current_user.id), class: 'btn' %>
+          
+          <%end%>
+        </div>
+      </div>
+      <%end%> 
+
+      </div >
+      </div >
+          <!-- Membership details end-->
+
+<!--  payment Details start -->
+<div class="section">
+      <%# <div class="flex"> %>
+
+        <% if current_user.has_role? :member %>
+
+
+<div
+  class="card"
+  style="
+    width: 20rem;
+    margin-top: 17px;
+    margin-bottom: 113px;
+    margin-right: 11px;
+    margin-left: 39px;
+  "
+>
+  <div class="card-body">
+    
+    <h3>Payment Details</h3>
+ 
+    <% if ( @user.payments.any? && @user.memberships.any? ) %> <%
+    @user.payments.each do |payment| %>
+    <h5 class="card-title">Payment ID : <%= payment.id %></h5>
+    <p class="card-text">Payment date : <%= payment.payment_date.strftime("%d-%m-%Y") %><br /></p>
+    <p class="card-text">Amount : <%= payment.amount %><br /></p>
+
+    <%end%> <% else %>
+    <p>No payments found.</p>
+    <!--  <a href="/users/<%= current_user.id %>/payments/new">
+        <%= "Get Payments" %>
+        </a>  -->
+    <%end%>
+  </div>
+</div>
+
+<%end%>
+        
+
+      <%# </div > %>
+      </div >
+ 
+
+    <!-- Payment details end -->
+
+          <div class="text">
+                <h2 class="primary mb">Why Choose Us?</h2>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+            </div>
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/why-us.png', alt: '') %>
+            </div>
+        </div>
+    </div>
+    <!-- End Why Us -->
+
+
+    <!-- Explore -->
+    <div class="section" id="explore">
+        <div class="container flex">
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/explore.jpg', alt: '') %>
+            </div>
+            <!-- Courses Details start -->
+            <div class="section">
+      <div class="flex">
+            <% if current_user.has_role? :member %>
+    <div
+      class="card"
+      <%# style="
+        width: 40rem;
+        margin-top: -115px;
+        margin-bottom: 113px;
+        margin-right: 11px;
+        margin-left: 69px;
+      " %>
+    >
+      <div class="card-body">
+        <h3>Courses Details</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Class Name</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Course ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @user.courses.each do |course| %>
+            <tr>
+              <td><%= course.class_name %></td>
+              <td><%= course.start_time.in_time_zone('Asia/Kolkata').strftime("%H:%M %Z") %></td>
+              <td><%= course.end_time.in_time_zone('Asia/Kolkata').strftime("%H:%M %Z") %></td>
+              <td><%= course.trainer_coach_id %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <%end%>
+
+      </div>
+    </div>
+
+
+
+            <!-- Courses Dertails end -->
+
+            <div class="text">
+                <h2 class="primary mb">
+                    Explore Our Fitness <br />
+                    Studio
+                </h2>
+                <p class="tertiary mb">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+                    esse vitae ratione quos maiores eveniet temporibus illum! Eligendi
+                    amet officia unde sint totam ut optio. Molestiae, illo quia?
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- End Explore -->
+
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
+  
+

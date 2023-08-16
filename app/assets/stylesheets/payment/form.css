@@ -1,0 +1,45 @@
+.card {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #3ea9b5;
+
+}
+
+.payment-form .form-group {
+  margin-bottom: 15px;
+}
+
+.payment-form label {
+  font-weight: bold;
+}
+
+.payment-form .btn-primary {
+  margin-left: 4px;
+  width: 100%;
+}
+
+body {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+.card {
+  border-radius: 8px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  width: 400px;
+  color: black;
+}
+footer{
+
+  margin-top: 350px;
+}

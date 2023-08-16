@@ -1,5 +1,66 @@
 
-<div class="container">
+
+ <%= stylesheet_link_tag "enrollment/forms" %>
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PGC-GYM Landing Page</title>
+    <!-- Ion Icons Js -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <!-- JS -->
+    <!-- CSS -->
+    <%#= stylesheet_link_tag "trainer/index" %>
+    <%= stylesheet_link_tag "enrollment/forms" %>
+    
+    <%= stylesheet_link_tag 'home/style' %>
+</head>
+<body>
+    <!-- Menu -->
+    <div class="menu">
+        <div class="container flex">
+            <!-- Mobile Button -->
+            <div class="mobile-btn">
+                <ion-icon name="grid"></ion-icon>
+            </div>
+            <div class="logo">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/logo.png', alt: '') %>
+            </div>
+            <ul class="nav">
+                <li class="nav-item"><%= link_to 'Home', '/' %></li>
+                <li class="nav-item"><%= link_to 'Features', '#why-us' %></li>
+                <li class="nav-item"><%= link_to 'Explore', '#explore' %></li>
+                <li class="nav-item"><%= link_to 'Trainer Details', '/trainer_coaches' %></li>
+            </ul>
+            <%#= link_to 'Login', '/users/sign_in', class: 'btn' %>
+            <%= link_to 'Account', user_path(current_user.id), class: 'btn' %>
+            <%= link_to "Sign Out", destroy_user_session_path, class: 'btn', data: { "turbo-method": :delete } %>
+        </div>
+    </div>
+    <!-- End Menu -->
+    <!-- Login Page -->
+    <div class="container">
+    <div class="flex">
+      <div class="header">
+        <div class="text">
+        </div>
+        <div class="visual">
+          <%#= image_tag 'path-to-your-image.jpg', alt: 'Login Visual' %>
+        </div>
+      </div>
+    </div>
+    <div class="section"style="background: radial-gradient(#111, #071a1a);">
+      <div class="flex">
+
+        <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <% if current_user.memberships.any? %>
@@ -8,7 +69,7 @@
           <%= form_with model: [current_user, current_user.enrollments.build] do |form| %>
             <div class="form-group">
               <%= form.label :enrollment_date %>
-              <%= form.date_field :enrollment_date, value: Date.today ,class: "form-control" %>
+              <%= form.date_field :enrollment_date, value: Date.today ,class: "form-control",readonly: true  %>
             </div>
 
             <div class="form-group">
@@ -17,7 +78,6 @@
             </div>
 
             <%= form.hidden_field :user_id, value: @user.id %>
-
             <div class="form-group text-center">
               <%= form.submit "Enroll", class: "btn btn-primary" %>
             </div>
@@ -32,49 +92,75 @@
     </div>
   </div>
 </div>
+          
+
+                 
+      </div>
+    </div>
+  </div>
 
 
+    <!-- Login endPage -->
 
-<style>
-/* Add this CSS to your stylesheet or style tag */
-.container {
-  margin-top: 50px;
-}
+  
 
-.enrollment-form-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
+    <!-- Why Us -->
+    <div class="section" id="why-us">
+        <div class="container flex">
+            <div class="text">
+                <h2 class="primary mb">Why Choose Us?</h2>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+                <h3 class="secondary mb">Consulatation with Expert.</h3>
+                <p class="tertiary">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias quos
+                    maxime tempore?
+                </p>
+            </div>
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/why-us.png', alt: '') %>
+            </div>
+        </div>
+    </div>
+    <!-- End Why Us -->
 
-.enrollment-error-card {
-  border: 1px solid #e74c3c;
-  border-radius: 8px;
-  padding: 20px;
-  background-color: #f8d7da;
-  color: #721c24;
-  text-align: center;
-}
+    <!-- Explore -->
+    <div class="section" id="explore">
+        <div class="container flex">
+            <div class="visual">
+                <%= image_tag('https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/explore.jpg', alt: '') %>
+            </div>
+            <div class="text">
+                <h2 class="primary mb">
+                    Explore Our Fitness <br />
+                    Studio
+                </h2>
+                <p class="tertiary mb">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
+                    esse vitae ratione quos maiores eveniet temporibus illum! Eligendi
+                    amet officia unde sint totam ut optio. Molestiae, illo quia?
+                </p>
+                <%= link_to 'Get Started Now', '/users/sign_up', class: 'btn mt' %>
+            </div>
+        </div>
+    </div>
+    <!-- End Explore -->
 
-.form-group {
-  margin-bottom: 20px;
-}
 
-.form-control {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+<!-- Footer -->
+<footer class="footer">
+    <div class="container flex">
+        <p class="tertiary">
+            &copy; <%= Time.now.year %> Programmer Cloud. All Rights Reserved.
+        </p>
+    </div>
+</footer>
+<!-- End Footer -->
+<script src="script.js"></script>
+</body>
+</html>
+  
 
-.btn-primary {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-</style>

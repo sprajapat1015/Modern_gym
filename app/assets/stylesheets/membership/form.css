@@ -1,0 +1,47 @@
+body {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #ffffff;
+}
+
+.card {
+  background-color: #4ddce3;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 400px;
+  color: black;
+}
+
+label, select, input[type="date"], input[type="submit"] {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="date"],
+select,
+input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+footer{
+
+  margin-top: 150px;
+}

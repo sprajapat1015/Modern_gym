@@ -42,7 +42,6 @@ RSpec.describe MembershipsController, type: :controller do
   
       it "re-renders the :new template" do
         post :create, params: { user_id: @user.to_param, membership: { class_name: nil } }
-        # byebug
         expect(response).to render_template(:new)
         expect(response).to have_http_status(:unprocessable_entity)
       end

@@ -1,0 +1,88 @@
+/* Basic styling for the login card */
+
+.section:nth-child(even) {
+  /* background: #01216b; */
+
+  background: radial-gradient(#111, #071a1a);
+}
+
+.login-card {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for form fields */
+.field {
+  margin-bottom: 15px;
+}
+
+/* Styling for labels */
+.field label {
+  font-weight: bold;
+}
+
+/* Styling for input fields */
+.field input[type="email"],
+.field input[type="password"],
+.field input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Styling for Remember Me checkbox */
+.field .remember-me-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+/* Styling for Submit button */
+.actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.actions input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+  .login-card {
+    max-width: 100%;
+  }
+}
+
+
+
+/* footer{ */
+  /* for hiding footer  */
+  /* display: none;   */
+  /* position: static;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  left: 0;
+  color: rgb(1, 62, 116);
+  background-color: #fafafa;
+  padding: 1px;
+  position: fixed;
+  bottom: 0;
+  text-shadow:  2px 2px 8px rgb(157, 157, 157);
+}  */
+
+.set_field{
+
+  width: 484px;
+}
